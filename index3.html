@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+  <title>JavaScript</title>
+  <style>
+    #div1{
+      background-color: antiquewhite;
+      width: 100px;
+      height: 100px;
+    }
+    #div2{
+      background-color: red;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JavaScript</h1>
+
+  <main class="container">
+    <div class="col-6 form-group">
+      <label>Primeira caixa:</label>
+      <input type="text" class="form-control" id="txtnumero1" onfocus="validaNumero1()" onblur="perdeuFoco()" />
+      <span id="textoTxtNumero1"></span>
+    </div>
+
+    <div class="col-6 form-group">
+      <label>Segunda caixa:</label>
+      <input type="text" class="form-control" id="txtnumero2" onblur="validaNumero2()" />
+      <span id="textoTxtNumero2"></span>
+    </div>
+
+
+    <div class="col-6 form-group">
+      <label>Número:</label>
+      <input type="text" class="form-control" id="btn1" onclick="validaNumero2()" />
+      <span id="numero"></span>
+    </div>
+
+    <div class="row">
+      <div class="col-3 form-group">
+        <input type="button" class="btn btn-success" value="Validador" onclick="validador()" />
+      </div>
+
+      <div class="container">
+        <div id="div1">
+          <p id="paragrafo1">Texto</p>
+        </div>
+      </div>
+      <div class="container">
+          <div id="div2">
+            <p id="paragrafo2"></p>
+          </div>
+      </div>
+      <div>
+        <input type="button" class="btn btn-sucess" value="Alternar" onclick="alternar()">
+      </div>
+
+      <div class="container">
+        <div class="col-6 form-group">
+          <label>Conta de água</label>
+          <input type="number" class="form-control" id="textoAgua"/>
+          Resultado: <span id="textoTxtAgua"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-3 form-group">
+            <input type="button" class="btn btn-success" value="Preco" onclick="validaAgua()" />
+          </div>
+        </div>
+
+
+
+
+        <div class="container">
+          <div class="col-6 form-group">
+            <label>Nota 1:</label>
+            <input type="text" id="nota1" class="form-control">
+          </div>
+          <div class="col-6 form-group">
+            <label>Nota 2:</label>
+            <input type="text" id="nota2" class="form-control">
+          </div class="row">
+          <div class="col-3 form-group">
+            <input type="button" class="btn btn-success" value="Media" onclick="validarNotas()" />
+          </div>
+        </div>
+  </main>
+
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    function validaNumero1() {
+      document.getElementById("textoTxtNumero1").textContent = 'Primeira caixa ativa';
+    }
+
+    function perdeuFoco() {
+      document.getElementById("textoTxtNumero1").textContent = 'Perdeu o foco';
+    }
+
+    function alternar(){
+        var p1 = document.getElementById("paragrafo1").textContent;
+        var p2 = document.getElementById("paragrafo2").textContent;
+        document.getElementById("paragrafo1").textContent = p2;
+        document.getElementById("paragrafo2").textContent = p1;
+    }
+
+    function validador() {
+      var n1 = document.getElementById("btn1").value;
+      if (n1 >= 0 && n1 <= 10) {
+        document.getElementById('numero').textContent = 'Insuficiente!';
+      }
+      else {
+        if (n1 >= 11 && n1 <= 14) {
+          document.getElementById('numero').textContent = 'Bom!';
+        }
+        else{
+          if (n1 > 14) {
+            document.getElementById('numero').textContent = 'Muito bom!';
+          }
+          else{
+            document.getElementById('numero').textContent = "Nenhum";
+          }
+        }
+      }
+      
+    }
+
+    function validaAgua() {
+      var conta = document.getElementById("textoAgua").value;
+      var total = 0;
+      if (conta <= 20) {
+        total = (conta * 1.60);
+      }
+      else{
+        if (conta >= 21 && conta <= 50)
+          total = conta * 2.80;
+        else{
+          total = conta * 4.20;
+        }
+      }
+
+      if (total <= 100) {
+        total = total - (total  * 0.05);
+        
+      }
+      else{
+        if (total > 200) {
+          total = total + (total  * 0.10);
+            
+        }
+      }
+
+      document.getElementById("textoTxtAgua").textContent = total;
+
+      
+
+      
+    }
+      function validarNotas() {
+        var nota1 = parseFloat(document.getElementById("nota1").value);
+        var nota2 = parseFloat(document.getElementById("nota2").value);
+
+        var notaFinal = (nota1 + nota2) / 2;
+
+        if (notaFinal < 3.0) {
+          alert("Reprovado");
+        } if (notaFinal >= 7.0) {
+          alert("Aprovado");
+        } if (notaFinal >= 3.0 && notaFinal < 7.0) {
+          alert("Exame");
+        }
+      }
+  </script>
+
+</body>
+
+</html>
